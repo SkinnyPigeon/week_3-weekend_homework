@@ -39,6 +39,12 @@ class AwayTeamLineup
     return HomeTeamLineup.map_items( sql, @runner )
   end
 
+  def team()
+    sql = "SELECT * FROM away_teams_lineups WHERE away_team_id = #{@away_team_id}"
+    result = @runner.run( sql )
+    return result.first
+  end
+
   def self.map_items( sql, runner )
     away_teams_lineups = runner.run( sql )
     result = away_teams_lineups.map { |home_team_lineup| AwayTeamLineup.new( home_team_lineup, runner ) }

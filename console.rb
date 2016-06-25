@@ -8,12 +8,12 @@ require( 'pry-byebug' )
 
 runner = SqlRunner.new({dbname: 'dodgeball', host: 'localhost'})
 
-
+HomeTeamLineup.delete_all( runner )
+AwayTeamLineup.delete_all( runner )
 Match.delete_all( runner )
 HomeTeam.delete_all( runner )
 AwayTeam.delete_all( runner )
-HomeTeamLineup.delete_all( runner )
-# AwayTeamLineup.delete_all( runner )
+
 
 home_team1 = HomeTeam.new( {"name" => "Dodgy Bastards"}, runner)
 ht1 = home_team1.save()
