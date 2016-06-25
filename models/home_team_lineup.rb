@@ -60,6 +60,47 @@ class HomeTeamLineup
     return result.first
   end
 
+  def update_lineup( options )
+    if options['catcher_1']
+      @catcher_1=options['catcher_1']
+    end
+    if options['catcher_2']
+      @catcher_2=options['catcher_2']
+    end
+    if options['corner_1']
+      @corner_1=options['corner_1']
+    end
+    if options['corner_2']
+      @corner_2=options['corner_2']
+    end
+    if options['sniper_1']
+      @sniper_1=options['sniper_1']
+    end
+    if options['sniper_2']
+      @sniper_2=options['sniper_2']
+    end
+    if options['thrower_1']
+      @thrower_1=options['thrower_1']
+    end
+    if options['thrower_2']
+      @thrower_2=options['thrower_2']
+    end
+
+    id = options['id'].to_i
+
+    sql = "UPDATE home_teams_lineups SET
+      catcher_1 = '#{ @catcher_1 }',
+      catcher_2 = '#{ @catcher_2 }',
+      corner_1 = '#{ @corner_1 }',
+      corner_2 = '#{ @corner_2 }',
+      sniper_1 = '#{ @sniper_1 }',
+      sniper_2 = '#{ @sniper_2 }',
+      thrower_1 = '#{ @thrower_1}',
+      thrower_2 = '#{ @thrower_2 }'"
+
+      @runner.run( sql )
+    end
+
 end
 
 
