@@ -3,6 +3,7 @@ require_relative( 'models/away_team' )
 require_relative( 'models/home_team_lineup' )
 require_relative( 'models/away_team_lineup' )
 require_relative( 'models/match' )
+require_relative( 'models/league' )
 require_relative( 'db/sql_runner' )
 require( 'pry-byebug' )
 
@@ -10,6 +11,7 @@ runner = SqlRunner.new({dbname: 'dodgeball', host: 'localhost'})
 
 HomeTeamLineup.delete_all( runner )
 AwayTeamLineup.delete_all( runner )
+League.delete_all( runner )
 Match.delete_all( runner )
 HomeTeam.delete_all( runner )
 AwayTeam.delete_all( runner )
@@ -54,7 +56,8 @@ match2.final_score( 5,9 )
 match3.final_score( 7,8 )
 match4.final_score( 6,6 )
 
-
+league = League.new( {"match_id" => Match.all( runner ).each.first.id }, runner )
+league.save()
 
 binding.pry
 nil

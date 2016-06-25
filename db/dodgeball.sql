@@ -1,5 +1,6 @@
 DROP TABLE home_teams_lineups;
 DROP TABLE away_teams_lineups;
+DROP TABLE leagues;
 DROP TABLE matches;
 DROP TABLE home_teams;
 DROP TABLE away_teams;
@@ -21,6 +22,11 @@ CREATE TABLE matches (
   away_team_score INT4,
   home_team_id INT4 references home_teams(id),
   away_team_id INT4 references away_teams(id)
+);
+
+CREATE TABLE leagues (
+  id SERIAL4 primary key,
+  match_id INT4 references matches(id)
 );
 
 CREATE TABLE home_teams_lineups (
