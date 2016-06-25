@@ -4,12 +4,12 @@ class League
 
   def initialize( options, runner )
     @id = options['id'].to_i
-    @match_id = options['match_id'].to_i
+    @matches = Match.all(runner)
     @runner = runner
   end
 
   def save()
-    sql = "INSERT INTO leagues ( match_id ) VALUES ( #{@match_id} )"
+    sql = "INSERT INTO leagues ( id ) VALUES ( #{@id} )"
     @runner.run( sql )
   end
 
@@ -25,10 +25,7 @@ class League
     runner.run( sql )
   end
 
-  # def final_score( home_goals, away_goals)
-  #   sql = "UPDATE matches SET home_team_score = #{home_goals}, away_team_score = #{away_goals} WHERE home_team_id = #{@home_team_id} "
-  #   @runner.run( sql )
-  # end
+
 
 end
 
