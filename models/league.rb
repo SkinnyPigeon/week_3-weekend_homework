@@ -2,6 +2,8 @@ require_relative('../db/sql_runner')
 
 class League
 
+  attr_reader(:matches, :id)
+
   def initialize( options, runner )
     @id = options['id'].to_i
     @matches = Match.all(runner)
