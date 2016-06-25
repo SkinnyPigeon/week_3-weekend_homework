@@ -15,11 +15,12 @@ class HomeTeamLineup
     @sniper_2 = options['sniper_2']
     @thrower_1 = options['thrower_1']
     @thrower_2 = options['thrower_2']
+    @home_team_id = options['home_team_id'].to_i
     @runner = runner
   end
 
   def save()
-    sql = "INSERT INTO home_teams_lineups (catcher_1, catcher_2, corner_1, corner_2, sniper_1, sniper_2, thrower_1, thrower_2) VALUES ('#{catcher_1}', '#{catcher_2}', '#{corner_1}', '#{corner_2}', '#{sniper_1}', '#{sniper_2}', '#{thrower_1}', '#{thrower_2}') RETURNING *"
+    sql = "INSERT INTO home_teams_lineups (catcher_1, catcher_2, corner_1, corner_2, sniper_1, sniper_2, thrower_1, thrower_2, home_team_id) VALUES ('#{catcher_1}', '#{catcher_2}', '#{corner_1}', '#{corner_2}', '#{sniper_1}', '#{sniper_2}', '#{thrower_1}', '#{thrower_2}', #{@home_team_id}) RETURNING *"
     return HomeTeamLineup.map_item( sql, @runner )
   end
 
@@ -45,7 +46,7 @@ class HomeTeamLineup
   end
 
   def self.map_item( sql, runner )
-    result - HomeTeamLineup.map_items( sql, runner )
+    result = HomeTeamLineup.map_items( sql, runner )
     return result.first
   end
 
