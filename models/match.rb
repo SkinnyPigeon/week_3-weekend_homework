@@ -29,14 +29,11 @@ class Match
   end
 
   def final_score( home_goals, away_goals)
-    sql = "INSERT INTO matches ( home_team_score, away_team_score) VALUES (#{home_goals}, #{away_goals})"
+    sql = "UPDATE matches SET home_team_score = #{home_goals}, away_team_score = #{away_goals} WHERE home_team_id = #{@home_team_id} "
     @runner.run( sql )
   end
 
 end
-
-
-
 
 
 
