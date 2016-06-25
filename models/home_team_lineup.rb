@@ -35,9 +35,13 @@ class HomeTeamLineup
   end
 
   def opponents()
-    sql = "SELECT a.* FROM away_teams_lineups a INNER JOIN matches m on m.away_team_id = a.id WHERE home_team_id = #{@home_team_id}"
+    sql = "SELECT away_teams_lineups.* FROM away_teams_lineups
+          INNER JOIN away_teams ON away_teams.id = away_teams_lineups.away_team_id
+          INNER JOIN matches ON matches.away_team_id = away_teams.id
+          WHERE home_team_id = #{@home_team_id}"
     return AwayTeamLineup.map_item( sql, @runner )
   end
+
 
   def team()
     sql = "SELECT * FROM home_teams_lineups WHERE home_team_id = #{@home_team_id}"
